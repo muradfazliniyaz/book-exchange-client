@@ -6,15 +6,22 @@
 }
 
 .cardimage {
+  margin-left: 50px;
   box-sizing: border-box;
-
+  border-radius: 5px !important;
 }
 
 .search-field {
   width: 550px;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   box-sizing: border-box;
   border: 2px solid #668C03;
+}
+
+.search-button {
+  background-color: #668C03;
+  color: #FFFFFF;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .nav-button {
@@ -87,6 +94,7 @@
 
 .about-img {
   margin-top: 20px;
+  border-radius: 5px !important;
 }
 
 .contact-row {
@@ -99,3 +107,18 @@
   margin-left: 5px;
 }
 
+.request-button {
+  background-color: #668C03 !important;
+  width: 90px !important;
+}
+
+.delete-button {
+  background-color: red !important;
+  width: 75px !important;
+  margin-left: 5px;
+}
+
+.edit-button {
+  background-color: #668C03 !important;
+  width: 75px !important;
+}

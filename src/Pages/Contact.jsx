@@ -1,5 +1,5 @@
-import { NavBar } from "./Navbar";
-import { Footer } from "./Footer";
+import { NavBar } from "../Components/Navbar";
+import { Footer } from "../Components/Footer";
 import { Row, Form, FormGroup, Label, Col, Input } from "reactstrap";
 
 const Contact = () => {

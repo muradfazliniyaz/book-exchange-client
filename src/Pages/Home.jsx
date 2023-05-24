@@ -1,5 +1,5 @@
-import { NavBar } from "./Navbar";
-import { Footer } from "./Footer";
+import { NavBar } from "../Components/Navbar";
+import { Footer } from "../Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { CardImg, Row, Col } from "reactstrap";
 import bookImage from "../images/library.jpg";
@@ -15,7 +15,7 @@ const Home = () => {
           <div className="home-div text">
             <h1 className="text">Heyy Book Lovers!</h1>
             <h2 className="text">
-              Join us with a book you read, sail to new worlds...
+              Join us with books you read, sail to new worlds...
             </h2>
             <Link type="submit" className="nav-button" to="/SignIn">
               Join Now

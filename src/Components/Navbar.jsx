@@ -3,8 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav, NavItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import logo from "../images/book-exchange-logo.jpeg";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar(args) {
+  const { isAuthenticated, isLoading } = useAuth0();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -13,7 +18,7 @@ function NavBar(args) {
     <>
       <div className="navbar-div">
         <a href="/">
-          <img src={logo} alt="" className="nav-img" />
+          <img src={logo} alt={"logo"} className="nav-img" />
         </a>
         <div>
           <label htmlFor="input-search"></label>
@@ -24,13 +29,11 @@ function NavBar(args) {
             className="search-field"
             placeholder="Title, Author, Keyword, ISBN, User"
           />
-          <button type="submit" className="nav-button">
+          <button type="submit" className="search-button">
             Search
           </button>
         </div>
-        <Link type="login" className="nav-button" to="/Login">
-          Login
-        </Link>
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </div>
       <Nav className="navbar-container">
         <NavItem>
@@ -47,6 +50,13 @@ function NavBar(args) {
           <Link className="nav-button" to="/Books">
             BOOKS
           </Link>
+        </NavItem>
+        <NavItem>
+          {isAuthenticated && (
+            <Link to="/userpage" className="nav-button">
+              USER PAGE
+            </Link>
+          )}
         </NavItem>
         <NavItem>
           <Link className="nav-button" to="/Contact">

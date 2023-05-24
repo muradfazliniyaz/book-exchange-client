@@ -3,41 +3,48 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
-  const [bookList, setBookList] = useState([]);
+  const [userList, setUserList] = useState([]);
 
-  const getBookList = async () => {
+  const getUserList = async () => {
     try {
-      const response = await fetch("http://localhost:9000/books");
+      const response = await fetch("http://localhost:9000/users");
       const data = await response.json();
-      console.log(data)
-      setBookList(data);
+      console.log(data);
+      setUserList(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getBookList();
+    getUserList();
   }, []);
 
-  const addBook = async (pBook) => {
-    const newBook = {
-      title: pBook.title,
-      author: pBook.author,
-      isbnNumber: pBook.isbnNumber,
-      explanation: pBook.explanation,
+  const addUser = async (pUser) => {
+    const newUser = {
+      name: pUser.name,
+      surname: pUser.surname,
+      email: pUser.email,
+      gender: pUser.gender,
+      birthDate: pUser.birthDate,
+      maritalStatus: pUser.maritalStatus,
+      password: pUser.password,
     };
 
-    await fetch("http://localhost:9000/books", {
+    await fetch("http://localhost:9000/users", {
       method: "POST",
-      body: JSON.stringify(newBook),
+      body: JSON.stringify(newUser),
       headers: { "Content-Type": "application/json" },
     });
 
-    await getBookList();
+    await getUserList();
   };
 
-  return <UserContext.Provider value={{ addBook, bookList }}>{props.children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ addUser, userList }}>
+      {props.children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserContextProvider;

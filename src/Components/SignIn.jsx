@@ -21,8 +21,8 @@ const SignIn = () => {
       <Row xs="8">
         <div className="home-div text">
           <SignInForm />
-          </div>
-        </Row>
+        </div>
+      </Row>
       <Footer />
     </>
   );

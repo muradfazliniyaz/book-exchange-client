@@ -10,7 +10,7 @@ import {
   Button,
 } from "reactstrap";
 
-const BookList = () => {
+const UserBookList = () => {
   const { bookList } = useContext(BookContext);
 
   const showAllBook = () => {
@@ -31,8 +31,9 @@ const BookList = () => {
             <CardSubtitle className="mb-2 text-muted" tag="h6">
               Category: {book?.category}
             </CardSubtitle>
-            {/* <CardText>{book?.explanation}</CardText> */}
-            <Button className="request-button">Request</Button>
+            <CardText>{book?.explanation}</CardText>
+            <Button className="edit-button">Edit</Button>
+            <Button className="delete-button">Delete</Button>
           </CardBody>
         </Card>
       );
@@ -48,4 +49,4 @@ const BookList = () => {
   );
 };
 
-export { BookList };
+export { UserBookList };

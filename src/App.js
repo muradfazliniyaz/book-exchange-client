@@ -1,13 +1,15 @@
 import React from "react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import "./App.css";
-import { Home } from "./Components/Home";
-import { About } from "./Components/About";
-import { Books } from "./Components/Books";
-import { Contact } from "./Components/Contact";
-import { Login } from "./Components/Login";
+import { Home } from "./Pages/Home";
+import { About } from "./Pages/About";
+import { Books } from "./Pages/Books";
+import { Contact } from "./Pages/Contact";
+import { Login } from "./Pages/Login";
 import { SignIn } from "./Components/SignIn";
-import {UserPage} from "./Components/userPage"
+import { UserPage } from "./Pages/userPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -16,36 +18,52 @@ const router = createBrowserRouter([
     errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "About",
+    path: "about",
     element: <About />,
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "Books",
+    path: "books",
     element: <Books />,
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "Contact",
+    path: "contact",
     element: <Contact />,
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "Login",
+    path: "login",
     element: <Login />,
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "SignIn",
+    path: "signin",
     element: <SignIn />,
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "UserPage",
-    element: <UserPage />,
+    path: "userpage",
+    element: (
+      <ProtectedRoute>
+        <UserPage />
+      </ProtectedRoute>
+    ),
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
 ]);
 
 function App() {
   return (
-    <React.Fragment>
-      <RouterProvider router={router} />
-    </React.Fragment>
+    <React.StrictMode>
+      <Auth0Provider
+        domain="dev-18qfumc30xj5cayd.us.auth0.com"
+        clientId="x56T8NwZswIIEJzi8hzSj0Qc56qTeh29"
+        redirectUri={window.location.origin}
+      >
+        <RouterProvider router={router} />
+      </Auth0Provider>
+    </React.StrictMode>
   );
 }
 

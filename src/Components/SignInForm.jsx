@@ -116,7 +116,9 @@ const SignInForm = () => {
             onChange={(e) => setGender(e.target.value)}
             className="radio"
           />
-          <label>Other<input
+          <label>
+            Other
+            <input
               type="radio"
               name="gender"
               value="Other"
@@ -164,32 +166,32 @@ const SignInForm = () => {
             className="radio"
           />
           <label>Divorced</label>
-            <input
-              type="radio"
-              name="marital status"
-              value="Divorced"
-              checked={maritalStatus === "Divorced"}
-              onChange={(e) => setMaritalStatus(e.target.value)}
-              className="radio"
-            />
-            <label>Widowed</label>
-            <input
-              type="radio"
-              name="marital status"
-              value="Widowed"
-              checked={maritalStatus === "Widowed"}
-              onChange={(e) => setMaritalStatus(e.target.value)}
-              className="radio"
-            />
-            <label>N/A</label>
-            <input
-              type="radio"
-              name="marital status"
-              value="N/A"
-              checked={maritalStatus === "N/A"}
-              onChange={(e) => setMaritalStatus(e.target.value)}
-              className="radio"
-            />          
+          <input
+            type="radio"
+            name="marital status"
+            value="Divorced"
+            checked={maritalStatus === "Divorced"}
+            onChange={(e) => setMaritalStatus(e.target.value)}
+            className="radio"
+          />
+          <label>Widowed</label>
+          <input
+            type="radio"
+            name="marital status"
+            value="Widowed"
+            checked={maritalStatus === "Widowed"}
+            onChange={(e) => setMaritalStatus(e.target.value)}
+            className="radio"
+          />
+          <label>N/A</label>
+          <input
+            type="radio"
+            name="marital status"
+            value="N/A"
+            checked={maritalStatus === "N/A"}
+            onChange={(e) => setMaritalStatus(e.target.value)}
+            className="radio"
+          />
           <p>Selected Marital Status: {maritalStatus}</p>
         </div>
         <div className="mb-3">

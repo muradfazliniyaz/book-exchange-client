@@ -1,5 +1,5 @@
-import { NavBar } from "./Navbar";
-import { Footer } from "./Footer";
+import { NavBar } from "../Components/Navbar";
+import { Footer } from "../Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import {
@@ -57,8 +57,8 @@ const Login = () => {
                 />
               </FormGroup>{" "}
               <Link className="nav-button" to="/UserPage">
-              <Button>Log In</Button>
-          </Link>
+                <Button>Log In</Button>
+              </Link>
             </Form>
             <h6>
               Not a Member?{" "}
@@ -77,7 +77,3 @@ const Login = () => {
 };
 
 export { Login };
-
-
-
-
