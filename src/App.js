@@ -5,11 +5,12 @@ import { Home } from "./Pages/Home";
 import { About } from "./Pages/About";
 import { Books } from "./Pages/Books";
 import { Contact } from "./Pages/Contact";
-import { Login } from "./Pages/Login";
 import { SignIn } from "./Components/SignIn";
-import { UserPage } from "./Pages/userPage";
+import { UserPage } from "./Pages/UserPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import { ProtectedRoute } from "./Components/ProtectedRoute";
+import { UserManagementPage } from "./Pages/UserManagementPage";
+import { BookManagementPage } from "./Pages/BookManagementPage";
 
 const router = createBrowserRouter([
   {
@@ -33,11 +34,6 @@ const router = createBrowserRouter([
     errorElement: <h1>Ooooops There is an ERROR</h1>,
   },
   {
-    path: "login",
-    element: <Login />,
-    errorElement: <h1>Ooooops There is an ERROR</h1>,
-  },
-  {
     path: "signin",
     element: <SignIn />,
     errorElement: <h1>Ooooops There is an ERROR</h1>,
@@ -47,6 +43,24 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <UserPage />
+      </ProtectedRoute>
+    ),
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
+  },
+  {
+    path: "usermanagementpage",
+    element: (
+      <ProtectedRoute>
+        <UserManagementPage />
+      </ProtectedRoute>
+    ),
+    errorElement: <h1>Ooooops There is an ERROR</h1>,
+  },
+  {
+    path: "bookmanagementpage",
+    element: (
+      <ProtectedRoute>
+        <BookManagementPage />
       </ProtectedRoute>
     ),
     errorElement: <h1>Ooooops There is an ERROR</h1>,

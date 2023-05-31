@@ -16,4 +16,4 @@ function ProtectedLink({ name, link, roles, user }) {
   );
 }
 
-export default ProtectedLink;
+export { ProtectedLink };

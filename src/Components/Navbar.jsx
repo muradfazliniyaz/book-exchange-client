@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, NavItem } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Nav, Navbar, Container } from "react-bootstrap";
 import logo from "../images/book-exchange-logo.jpeg";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ProtectedLink } from "./ProtectedLink";
+import { useContext } from "react";
+import { UserContext } from "../Contexts/UserContext";
+import { NavLink } from "react-router-dom";
 
-function NavBar(args) {
-  const { isAuthenticated, isLoading } = useAuth0();
+function NavBar() {
+  const { isAuthenticated, user } = useAuth0();
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  // const toggle = () => setIsOpen(!isOpen);
+
+  const { currentUser, getUserByEmail } = useContext(UserContext);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUserByEmail(user?.email);
+    }
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -35,35 +46,54 @@ function NavBar(args) {
         </div>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       </div>
-      <Nav className="navbar-container">
-        <NavItem>
-          <Link className="nav-button" to="/">
-            HOME
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-button" to="/About">
-            ABOUT
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-button" to="/Books">
-            BOOKS
-          </Link>
-        </NavItem>
-        <NavItem>
-          {isAuthenticated && (
-            <Link to="/userpage" className="nav-button">
-              USER PAGE
-            </Link>
-          )}
-        </NavItem>
-        <NavItem>
-          <Link className="nav-button" to="/Contact">
-            CONTACT
-          </Link>
-        </NavItem>
-      </Nav>
+      <Navbar className="navbar-container">
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mx-auto">
+              <>
+                <Nav.Link className="nav-button" as={NavLink} to="/" exact>
+                  HOME
+                </Nav.Link>
+                <Nav.Link className="nav-button" as={NavLink} to="/About">
+                  ABOUT
+                </Nav.Link>
+                <Nav.Link className="nav-button" as={NavLink} to="/Books">
+                  BOOKS
+                </Nav.Link>
+                <Nav.Link className="nav-button" as={NavLink} to="/Contact">
+                  CONTACT
+                </Nav.Link>
+              </>
+              {isAuthenticated && (
+                <>
+                  <ProtectedLink
+                    className="nav-button"
+                    name="USER PAGE"
+                    link="/userpage"
+                    user={currentUser}
+                    roles={["user", "admin"]}
+                  />
+                  <ProtectedLink
+                    className="nav-button"
+                    name="USER MANAGEMENT"
+                    link="/usermanagementpage"
+                    user={currentUser}
+                    roles={["admin"]}
+                  />
+                  <ProtectedLink
+                    className="nav-button"
+                    name="BOOK MANAGEMENT"
+                    link="/bookmanagementpage"
+                    user={currentUser}
+                    roles={["admin"]}
+                  />
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 }

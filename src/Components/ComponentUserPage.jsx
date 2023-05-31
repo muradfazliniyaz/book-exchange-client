@@ -3,7 +3,6 @@ import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import classnames from "classnames";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserBookList } from "./UserBookList";
-import { Link } from "react-router-dom";
 import { AddBookPage } from "./AddBookPage";
 
 function ComponentUserPage() {

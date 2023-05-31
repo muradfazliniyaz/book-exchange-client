@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import userService from "../services/userService";
+import userService from "../Services/userService";
+import { UserContext } from "../Contexts/UserContext";
+import { useContext } from "react";
 
 export default function UserManagement() {
+  const { userList } = useContext(UserContext);
   const [users, setUsers] = useState([]);
-  const roles = ["admin", "author", "user"];
+  const roles = ["admin", "user"];
 
   const getAllUsers = async () => {
     try {
@@ -39,19 +42,24 @@ export default function UserManagement() {
       <table className="table">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>E-Mail Addres</th>
+            <th>Gender</th>
             <th>Birthday</th>
+            <th>Marital Status</th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
+              <td>{user.name}</td>
+              <td>{user.surname}</td>
               <td>{user.email}</td>
+              <td>{user.gender}</td>
+              <td>{user.birthDate}</td>
+              <td>{user.maritalStatus}</td>
               <td>
                 <select
                   className="form-select"
@@ -65,7 +73,6 @@ export default function UserManagement() {
                   ))}
                 </select>
               </td>
-              <td>{user.birthday}</td>
             </tr>
           ))}
         </tbody>

@@ -11,7 +11,17 @@ import {
 } from "reactstrap";
 
 const UserBookList = () => {
-  const { bookList } = useContext(BookContext);
+  const { bookList, deleteBook, editBook } = useContext(BookContext);
+
+  const handleDelete = (id) => {
+    deleteBook(id);
+    console.log("The book was deleted. ID: ", id);
+  };
+
+  const handleEdit = (book) => {
+    // Düzenleme işlemini gerçekleştirecek kod buraya gelecek
+    console.log("Book updated: ", book);
+  };
 
   const showAllBook = () => {
     const template = bookList.map((book, index) => {
@@ -32,8 +42,20 @@ const UserBookList = () => {
               Category: {book?.category}
             </CardSubtitle>
             <CardText>{book?.explanation}</CardText>
-            <Button className="edit-button">Edit</Button>
-            <Button className="delete-button">Delete</Button>
+            <Button
+              className="edit-button"
+              onClick={() => handleEdit(book)}
+              variant="warning"
+            >
+              Edit
+            </Button>
+            <Button
+              className="delete-button"
+              onClick={() => handleDelete(book.id)}
+              variant="danger"
+            >
+              Delete
+            </Button>
           </CardBody>
         </Card>
       );

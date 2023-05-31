@@ -12,6 +12,7 @@ const SignInForm = () => {
   const [birthDate, setBirthDate] = useState("");
   const [maritalStatus, setMaritalStatus] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +24,7 @@ const SignInForm = () => {
       birthDate: birthDate,
       maritalStatus: maritalStatus,
       password: password,
+      role: role,
     };
     if (
       name !== "" &&
@@ -31,7 +33,8 @@ const SignInForm = () => {
       gender !== "" &&
       birthDate !== "" &&
       maritalStatus !== "" &&
-      password !== ""
+      password !== "" &&
+      role !== ""
     ) {
       addUser(newUser);
       setName("");
@@ -41,6 +44,7 @@ const SignInForm = () => {
       setBirthDate("");
       setMaritalStatus("");
       setPassword("");
+      setRole("");
     } else {
       swal("Please enter all of information!");
     }
@@ -198,7 +202,7 @@ const SignInForm = () => {
           <label htmlFor="exampleFormControlInput3" className="form-label">
             Password
           </label>
-          <textarea
+          <input
             type={password}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -206,6 +210,19 @@ const SignInForm = () => {
             id="exampleFormControlInput3"
             placeholder="Password"
           />
+          <div className="mb-3">
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Role
+            </label>
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Role"
+            />
+          </div>
         </div>
         <button data-testid="add-button" type="submit" className="nav-button">
           Sign In

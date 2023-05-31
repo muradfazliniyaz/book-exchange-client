@@ -2,17 +2,7 @@ import { NavBar } from "./Navbar";
 import { Footer } from "./Footer";
 import { SignInForm } from "./SignInForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
-import {
-  CardImg,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Row } from "reactstrap";
 
 const SignIn = () => {
   return (

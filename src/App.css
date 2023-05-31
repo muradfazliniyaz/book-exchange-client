@@ -26,10 +26,10 @@
 
 .nav-button {
   width: 90px;
-  margin-right: 40px;
+  margin-right: 10px;
   text-align: center;
   background-color: #668C03;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   align-items: center;
   text-decoration: none;
   border-radius: 5px;
@@ -42,7 +42,7 @@
 .navbar-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
