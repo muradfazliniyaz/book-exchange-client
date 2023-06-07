@@ -4,41 +4,36 @@ import swal from "sweetalert";
 import { BookContext } from "../Contexts/BookContext";
 import { useContext } from "react";
 
-function AddBookPage() {
-  const { addBook } = useContext(BookContext);
+function EditBookPage({ book }) {
+  const { editBook } = useContext(BookContext);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [isbnNumber, setIsbnNumber] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [userId, setUserId] = useState("");
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newBook = {
+    const editedBook = {
       title: title,
       author: author,
       category: category,
       isbnNumber: isbnNumber,
       explanation: explanation,
-      userId: userId,
     };
     if (
       title !== "" &&
       author !== "" &&
       category !== "" &&
       isbnNumber !== "" &&
-      explanation !== "" &&
-      userId !== ""
+      explanation !== ""
     ) {
-      addBook(newBook);
+      handleEdit(book, editedBook);
       setTitle("");
       setAuthor("");
       setCategory("");
       setIsbnNumber("");
       setExplanation("");
-      setUserId("");
       handleClose();
     } else {
       swal("Please enter all of information!");
@@ -54,12 +49,25 @@ function AddBookPage() {
     setShowModal(false);
   };
 
+  const handleEdit = async (id) => {
+    await fetch("http://localhost:3000/books/" + id, {
+      method: "PUT",
+      headers: { "Content-Type": "Application/json" },
+      body: JSON.stringify(id),
+    });
+
+    await editBook();
+    console.log("Book updated: ", book);
+  };
+
   return (
     <div className="container mt-5">
-      <Button className="edit-button" onClick={handleShow}>Add a New Book</Button>
+      <Button className="edit-button" onClick={handleShow}>
+        Edit Book
+      </Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a New Book</Modal.Title>
+          <Modal.Title>Edit Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="col-lg-12">
@@ -76,11 +84,10 @@ function AddBookPage() {
                 </label>
                 <input
                   type="text"
-                  value={title}
+                  defaultValue={book.title}
                   onChange={(e) => setTitle(e.target.value)}
                   className="form-control"
                   id="exampleFormControlInput1"
-                  placeholder="Enter the Book Name"
                 />
               </div>
               <div className="mb-3">
@@ -92,11 +99,10 @@ function AddBookPage() {
                 </label>
                 <input
                   type="text"
-                  value={author}
+                  defaultValue={book.author}
                   onChange={(e) => setAuthor(e.target.value)}
                   className="form-control"
                   id="exampleFormControlInput2"
-                  placeholder="Enter Author Name"
                 />
               </div>
               <div className="mb-3">
@@ -108,11 +114,10 @@ function AddBookPage() {
                 </label>
                 <input
                   type="text"
-                  value={category}
+                  defaultValue={book.category}
                   onChange={(e) => setCategory(e.target.value)}
                   className="form-control"
                   id="exampleFormControlInput2"
-                  placeholder="Enter Category"
                 />
               </div>
               <div className="mb-3">
@@ -124,27 +129,10 @@ function AddBookPage() {
                 </label>
                 <input
                   type="text"
-                  value={isbnNumber}
+                  defaultValue={book.isbnNumber}
                   onChange={(e) => setIsbnNumber(e.target.value)}
                   className="form-control"
                   id="exampleFormControlInput3"
-                  placeholder="Enter ISBN Number"
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleFormControlInput3"
-                  className="form-label"
-                >
-                  User ID
-                </label>
-                <input
-                  type="number"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                  className="form-control"
-                  id="exampleFormControlInput3"
-                  placeholder="Enter User ID"
                 />
               </div>
               <div className="mb-3">
@@ -155,12 +143,11 @@ function AddBookPage() {
                   Explanation
                 </label>
                 <textarea
-                  value={explanation}
+                  defaultValue={book.explanation}
                   onChange={(e) => setExplanation(e.target.value)}
                   rows="5"
                   className="form-control"
                   id="exampleFormControlInput3"
-                  placeholder="Enter Explanation"
                 />
               </div>
               <Modal.Footer>
@@ -173,7 +160,7 @@ function AddBookPage() {
                   variant="primary"
                   onClick={handleSubmit}
                 >
-                  Add Book
+                  Save Book
                 </Button>
               </Modal.Footer>
             </form>
@@ -184,4 +171,4 @@ function AddBookPage() {
   );
 }
 
-export { AddBookPage };
+export { EditBookPage };

@@ -5,15 +5,25 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import BookContextProvider from "./Contexts/BookContext";
 import UserContextProvider from "./Contexts/UserContext";
+import { Auth0Provider } from "@auth0/auth0-react";
+import UserBookContextProvider from "./Contexts/UserBookContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <BookContextProvider>
-        <App />
-      </BookContextProvider>
-    </UserContextProvider>
+    <Auth0Provider
+      domain="dev-18qfumc30xj5cayd.us.auth0.com"
+      clientId="x56T8NwZswIIEJzi8hzSj0Qc56qTeh29"
+      redirectUri={window.location.origin}
+    >
+      <UserContextProvider>
+        <BookContextProvider>
+          <UserBookContextProvider>
+            <App />
+          </UserBookContextProvider>
+        </BookContextProvider>
+      </UserContextProvider>
+    </Auth0Provider>
   </React.StrictMode>
 );
 

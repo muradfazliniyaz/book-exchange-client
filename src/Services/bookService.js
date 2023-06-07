@@ -1,15 +1,15 @@
 import { api } from "./httpService";
 
-// const getBook = async (email) => {
-//   try {
-//     //TODO 
-//     const response = await api.get(`/users/profile/${email}`);
-//     return response.data  //user object
-//   } catch (error) {
-//     console.error(error.message);
-//     throw error;
-//   }
-// };
+const getBook = async (email) => {
+  try {
+    //TODO 
+    const response = await api.get(`/users/profile/${email}`);
+    return response.data  //user object
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
 
 const saveBook = async (book) => {
   try {
@@ -34,7 +34,7 @@ const getBooks = async () => {
 
 
 const bookService = {
-//   getBook,
+  getBook,
   saveBook,
   getBooks,
 };

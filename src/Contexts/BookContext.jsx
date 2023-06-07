@@ -37,9 +37,18 @@ const BookContextProvider = (props) => {
 
     await getBookList();
   };
+  
+
+  const deleteBook = async (pId) => {
+    await fetch("http://localhost:9000/books/" + pId, {
+      method:"DELETE",
+    } )
+    await getBookList();
+
+  }
 
   return (
-    <BookContext.Provider value={{ addBook, bookList }}>
+    <BookContext.Provider value={{ addBook, bookList, deleteBook }}>
       {props.children}
     </BookContext.Provider>
   );

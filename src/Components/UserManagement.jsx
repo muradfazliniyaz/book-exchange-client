@@ -3,7 +3,7 @@ import userService from "../Services/userService";
 import { UserContext } from "../Contexts/UserContext";
 import { useContext } from "react";
 
-export default function UserManagement() {
+function UserManagement() {
   const { userList } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const roles = ["admin", "user"];
@@ -83,3 +83,5 @@ export default function UserManagement() {
     </div>
   );
 }
+
+export { UserManagement };

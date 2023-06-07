@@ -42,7 +42,7 @@
 .navbar-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -109,16 +109,18 @@
 
 .request-button {
   background-color: #668C03 !important;
-  width: 90px !important;
+  width: 150px !important;
 }
 
 .delete-button {
   background-color: red !important;
-  width: 75px !important;
-  margin-left: 5px;
+  width: 150px !important;
+  margin-left: 12px;
+  margin-top: 3px;
 }
 
 .edit-button {
   background-color: #668C03 !important;
-  width: 75px !important;
+  width: 150px !important;
+  
 }

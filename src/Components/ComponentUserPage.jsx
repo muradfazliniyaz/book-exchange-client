@@ -4,6 +4,8 @@ import classnames from "classnames";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserBookList } from "./UserBookList";
 import { AddBookPage } from "./AddBookPage";
+import { RequestedBooks } from "./RequestedBooks";
+import { TheBooksIRequested } from "./TheBooksIRequested";
 
 function ComponentUserPage() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -32,7 +34,7 @@ function ComponentUserPage() {
               toggle("tab2");
             }}
           >
-            Requested Book
+            Requested Books
           </NavLink>
         </NavItem>
         <NavItem>
@@ -52,12 +54,10 @@ function ComponentUserPage() {
           <UserBookList />
         </TabPane>
         <TabPane tabId="tab2">
-          <h1>Tab 2 Content</h1>
-          <p>This is the content for Tab 2.</p>
+            <RequestedBooks />
         </TabPane>
         <TabPane tabId="tab3">
-          <h1>Tab 3 Content</h1>
-          <p>This is the content for Tab 3.</p>
+            <TheBooksIRequested />
         </TabPane>
       </TabContent>
     </div>

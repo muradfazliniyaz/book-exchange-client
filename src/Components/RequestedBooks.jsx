@@ -1,4 +1,4 @@
-import { UserBookContext } from "../Contexts/UserBookContext";
+import { BookContext } from "../Contexts/BookContext";
 import { useContext } from "react";
 import {
   Card,
@@ -9,17 +9,17 @@ import {
   CardText,
   Button,
 } from "reactstrap";
-import { EditBookPage } from "./EditBookPage";
 
-const UserBookList = () => {
-  const { userBooksList, deleteBook, editBook } = useContext(UserBookContext);
+const RequestedBooks = () => {
+  const { bookList } = useContext(BookContext);
+
   const handleDelete = (id) => {
-    deleteBook(id);
+    // deleteBook(id);
     console.log("The book was deleted. ID: ", id);
   };
 
-  const showAllBookByUserId = () => {
-    const template = userBooksList?.map((book, index) => {
+  const showAllBook = () => {
+    const template = bookList.map((book, index) => {
       return (
         <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
           <CardImg
@@ -37,13 +37,12 @@ const UserBookList = () => {
               Category: {book?.category}
             </CardSubtitle>
             <CardText>{book?.explanation}</CardText>
-            <EditBookPage book={book} />
             <Button
-              className="delete-button"
+              className="edit-button"
               onClick={() => handleDelete(book.id)}
               variant="danger"
             >
-              Delete Book
+              Book Sent
             </Button>
           </CardBody>
         </Card>
@@ -55,9 +54,9 @@ const UserBookList = () => {
 
   return (
     <div className="container">
-      <div className="row">{showAllBookByUserId()}</div>
+      <div className="row">{showAllBook()}</div>
     </div>
   );
 };
 
-export { UserBookList };
+export { RequestedBooks };

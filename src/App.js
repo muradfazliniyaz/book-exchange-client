@@ -1,5 +1,4 @@
 import React from "react";
-import { Auth0Provider } from "@auth0/auth0-react";
 import "./App.css";
 import { Home } from "./Pages/Home";
 import { About } from "./Pages/About";
@@ -70,13 +69,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <React.StrictMode>
-      <Auth0Provider
-        domain="dev-18qfumc30xj5cayd.us.auth0.com"
-        clientId="x56T8NwZswIIEJzi8hzSj0Qc56qTeh29"
-        redirectUri={window.location.origin}
-      >
-        <RouterProvider router={router} />
-      </Auth0Provider>
+      <RouterProvider router={router} />
     </React.StrictMode>
   );
 }
