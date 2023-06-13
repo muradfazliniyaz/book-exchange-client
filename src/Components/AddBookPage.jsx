@@ -1,36 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import swal from "sweetalert";
-import { BookContext } from "../Contexts/BookContext";
-import { useContext } from "react";
+import { UserBookContext } from "../Contexts/UserBookContext";
+import { UserContext } from "../Contexts/UserContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function AddBookPage() {
-  const { addBook } = useContext(BookContext);
+  const { isAuthenticated, user } = useAuth0();
+  const { addBook } = useContext(UserBookContext);
+  const { currentUser, getUserByEmail } = useContext(UserContext);
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [isbnNumber, setIsbnNumber] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [userId, setUserId] = useState("");
-
+  
+  async function init () {
+    await getUserByEmail(user?.email);
+  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      init();
+    }
+  }, [isAuthenticated, currentUser?.id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newBook = {
       title: title,
       author: author,
       category: category,
       isbnNumber: isbnNumber,
       explanation: explanation,
-      userId: userId,
+      userId: currentUser.id,
     };
     if (
       title !== "" &&
       author !== "" &&
       category !== "" &&
       isbnNumber !== "" &&
-      explanation !== "" &&
-      userId !== ""
+      explanation !== "" 
     ) {
       addBook(newBook);
       setTitle("");
@@ -38,7 +49,7 @@ function AddBookPage() {
       setCategory("");
       setIsbnNumber("");
       setExplanation("");
-      setUserId("");
+
       handleClose();
     } else {
       swal("Please enter all of information!");
@@ -131,6 +142,7 @@ function AddBookPage() {
                   placeholder="Enter ISBN Number"
                 />
               </div>
+              {/* 
               <div className="mb-3">
                 <label
                   htmlFor="exampleFormControlInput3"
@@ -147,6 +159,7 @@ function AddBookPage() {
                   placeholder="Enter User ID"
                 />
               </div>
+              */}
               <div className="mb-3">
                 <label
                   htmlFor="exampleFormControlInput3"

@@ -49,7 +49,7 @@ const UserBookContextProvider = (props) => {
       headers: { "Content-Type": "application/json" },
     });
 
-    await getBookListByUserId();
+    await getBookListByUserId(pBook.userId);
   };
 
   const deleteBook = async (pId) => {
