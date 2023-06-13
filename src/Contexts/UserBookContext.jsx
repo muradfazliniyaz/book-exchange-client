@@ -13,13 +13,13 @@ const UserBookContextProvider = (props) => {
 
   async function init () {
     await getUserByEmail(user?.email);
-    await getBookListByUserId(currentUser.id);
+    await getBookListByUserId(currentUser?.id);
   }
   useEffect(() => {
     if (isAuthenticated) {
-      init()
+      init();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, currentUser?.id]);
 
   const getBookListByUserId = async (userId) => {
     try {
