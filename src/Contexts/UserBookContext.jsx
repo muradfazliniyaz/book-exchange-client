@@ -23,7 +23,7 @@ const UserBookContextProvider = (props) => {
 
   const getBookListByUserId = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:9000/books/${userId}`);
+      const response = await fetch(`http://localhost:9000/books/user/${userId}`);
       const data = await response.json();
       console.log(data);
       setUserBooksList(data);

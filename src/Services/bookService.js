@@ -3,7 +3,7 @@ import { api } from "./httpService";
 const getBook = async (email) => {
   try {
     //TODO 
-    const response = await api.get(`/users/profile/${email}`);
+    const response = await api.get(`/users/${email}`);
     return response.data  //user object
   } catch (error) {
     console.error(error.message);

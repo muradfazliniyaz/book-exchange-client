@@ -122,5 +122,11 @@
 .edit-button {
   background-color: #668C03 !important;
   width: 150px !important;
-  
+  margin-top: 0px !important;
 }
+
+.add-new-book-button {
+  background-color: #668C03 !important;
+  width: 150px !important;
+}
+

@@ -3,7 +3,7 @@ import { api } from "./httpService";
 const getUser = async (email) => {
   try {
     //TODO 
-    const response = await api.get(`/users/profile/${email}`);
+    const response = await api.get(`/users/${email}`);
     return response.data  //user object
   } catch (error) {
     console.error(error.message);
@@ -22,15 +22,16 @@ const saveUser = async (user) => {
   }
 };
 
-const getUsers = async () => {
-  try {
-    const response = await api.get(`/users`);
-    return response.data
-  } catch (error) {
-    console.error(error.message);
-    throw error;
-  }
-};
+// const getUsers = async () => {
+//   try {
+//     const response = await api.get(`/users`);
+//     console.log(response.data)
+//     return response.data
+//   } catch (error) {
+//     console.error(error.message);
+//     throw error;
+//   }
+// };
 
 const updateUserRoles = async (users) => {
   try {
@@ -45,7 +46,7 @@ const updateUserRoles = async (users) => {
 const userService = {
   getUser,
   saveUser,
-  getUsers,
+  // getUsers,
   updateUserRoles
 };
 

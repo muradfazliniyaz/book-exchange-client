@@ -2,21 +2,15 @@ import { useState, useEffect } from "react";
 import userService from "../Services/userService";
 import { UserContext } from "../Contexts/UserContext";
 import { useContext } from "react";
+import { Button } from "reactstrap";
 
 function UserManagement() {
-  const { userList } = useContext(UserContext);
+  const { userList, deleteUser } = useContext(UserContext);
   const [users, setUsers] = useState([]);
   const roles = ["admin", "user"];
-
-  const getAllUsers = async () => {
-    try {
-      const users = await userService.getUsers();
-      if (users) {
-        setUsers(users);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const handleDelete = (id) => {
+    deleteUser(id);
+    console.log("The user was deleted. ID: ", id);
   };
 
   const handleRoleChange = (userId, newRole) => {
@@ -29,13 +23,6 @@ function UserManagement() {
     setUsers(updatedUsers);
   };
 
-  useEffect(() => {
-    getAllUsers();
-  }, []);
-  const handleSave = async () => {
-    await userService.updateUserRoles(users);
-    window.location.reload();
-  };
   return (
     <div className="container bg-white">
       <h1 className="my-4">User Management</h1>
@@ -52,7 +39,7 @@ function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {userList.map((user) => (
             <tr key={user.id}>
               <td>{user.name}</td>
               <td>{user.surname}</td>
@@ -73,13 +60,19 @@ function UserManagement() {
                   ))}
                 </select>
               </td>
+              <td>
+                <Button
+                  className="delete-button"
+                  onClick={() => handleDelete(user.id)}
+                  variant="danger"
+                >
+                  Delete
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={handleSave}>
-        Save{" "}
-      </button>
     </div>
   );
 }

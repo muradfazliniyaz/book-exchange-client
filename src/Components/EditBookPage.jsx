@@ -63,7 +63,7 @@ function EditBookPage({ book }) {
   return (
     <div className="container mt-5">
       <Button className="edit-button" onClick={handleShow}>
-        Edit Book
+        Edit
       </Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>

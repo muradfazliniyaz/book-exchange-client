@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const useCheckUser = () => {
   const { user, isAuthenticated } = useAuth0();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(user);
   const checkUser = async () => {
     if (isAuthenticated) {
@@ -16,11 +16,11 @@ const useCheckUser = () => {
           role: remoteUser.role,
           id: remoteUser.id,
         });
-        navigate("/userpage");
-      } else {
-        navigate("/signin");
-      }
-    }
+      //   navigate("/userpage");
+      // } else {
+      //   navigate("/signin");
+      // }
+    }}
   };
 
   useEffect(() => {

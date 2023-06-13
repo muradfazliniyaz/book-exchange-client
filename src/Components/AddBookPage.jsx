@@ -56,7 +56,7 @@ function AddBookPage() {
 
   return (
     <div className="container mt-5">
-      <Button className="edit-button" onClick={handleShow}>Add a New Book</Button>
+      <Button className="add-new-book-button" onClick={handleShow}>Add a New Book</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add a New Book</Modal.Title>

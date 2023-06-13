@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
@@ -15,6 +15,10 @@ const UserContextProvider = (props) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getUserList();
+  }, []);
 
   const getUserByEmail = async (email) => {
     try {
