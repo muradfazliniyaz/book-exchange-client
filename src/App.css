@@ -130,3 +130,14 @@
   width: 150px !important;
 }
 
+.add-new-user-button {
+  background-color: #668C03 !important;
+  width: 150px !important;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  padding-top: 8px;
+}
+

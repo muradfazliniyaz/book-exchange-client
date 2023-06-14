@@ -11,16 +11,16 @@ const getBook = async (email) => {
   }
 };
 
-const saveBook = async (book) => {
-  try {
-    //TODO 
-    const response = await api.post(`/books`, book);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+// const saveBook = async (book) => {
+//   try {
+//     //TODO 
+//     const response = await api.post(`/books`, book);
+//     return response.data;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
 
 const getBooks = async () => {
   try {
@@ -35,7 +35,7 @@ const getBooks = async () => {
 
 const bookService = {
   getBook,
-  saveBook,
+  // saveBook,
   getBooks,
 };
 

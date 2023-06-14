@@ -9,7 +9,7 @@ import {
   CardText,
   Button,
 } from "reactstrap";
-import { EditBookPage } from "./EditBookPage";
+import { EditBookPage } from "../Pages/EditBookPage";
 
 const UserBookList = () => {
   const { userBooksList, deleteBook, editBook } = useContext(UserBookContext);

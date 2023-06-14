@@ -3,7 +3,7 @@ import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import classnames from "classnames";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserBookList } from "./UserBookList";
-import { AddBookPage } from "./AddBookPage";
+import { AddBookPage } from "../Pages/AddBookPage";
 import { RequestedBooks } from "./RequestedBooks";
 import { TheBooksIRequested } from "./TheBooksIRequested";
 

@@ -3,6 +3,7 @@ import userService from "../Services/userService";
 import { UserContext } from "../Contexts/UserContext";
 import { useContext } from "react";
 import { Button } from "reactstrap";
+import { AddUserPage } from "../Pages/AddUserPage";
 
 function UserManagement() {
   const { userList, deleteUser } = useContext(UserContext);
@@ -13,19 +14,25 @@ function UserManagement() {
     console.log("The user was deleted. ID: ", id);
   };
 
-  const handleRoleChange = (userId, newRole) => {
-    const updatedUsers = users.map((user) => {
-      if (user.id === userId) {
-        return { ...user, role: newRole };
+  const getAllUsers = async () => {
+    try {
+      const users = await userService.getusers();
+      if (users) {
+        setUsers(users);
       }
-      return user;
-    });
-    setUsers(updatedUsers);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   return (
     <div className="container bg-white">
       <h1 className="my-4">User Management</h1>
+      <AddUserPage />
       <table className="table">
         <thead>
           <tr>
@@ -47,19 +54,7 @@ function UserManagement() {
               <td>{user.gender}</td>
               <td>{user.birthDate}</td>
               <td>{user.maritalStatus}</td>
-              <td>
-                <select
-                  className="form-select"
-                  value={user.role}
-                  onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                >
-                  {roles.map((role, index) => (
-                    <option key={index} value={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-              </td>
+              <td>{user.role}</td>
               <td>
                 <Button
                   className="delete-button"

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import bookService from "../Services/bookService";
 import { BookContext } from "../Contexts/BookContext";
 import { useContext } from "react";
-import { AddBookPage } from "./AddBookPage";
+import { AddBookPage } from "../Pages/AddBookPage";
 import { Button } from "reactstrap";
-import { EditBookPage } from "./EditBookPage";
+import { EditBookPage } from "../Pages/EditBookPage";
 
 function BookManagement() {
   const { bookList, deleteBook } = useContext(BookContext);

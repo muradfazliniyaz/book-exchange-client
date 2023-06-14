@@ -4,50 +4,28 @@ const getUser = async (email) => {
   try {
     //TODO 
     const response = await api.get(`/users/${email}`);
-    return response.data  //user object
+    return response.data 
   } catch (error) {
     console.error(error.message);
     throw error;
   }
 };
 
-const saveUser = async (user) => {
-  try {
-    //TODO 
-    const response = await api.post(`/users`, user);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
 
-// const getUsers = async () => {
-//   try {
-//     const response = await api.get(`/users`);
-//     console.log(response.data)
-//     return response.data
-//   } catch (error) {
-//     console.error(error.message);
-//     throw error;
-//   }
-// };
 
-const updateUserRoles = async (users) => {
+const getUsers = async () => {
   try {
-    const response = await api.put(`/users`, users);
-    return response.data;
+    const response = await api.get(`/users`);
+    return response.data
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     throw error;
   }
 };
 
 const userService = {
   getUser,
-  saveUser,
-  // getUsers,
-  updateUserRoles
+  getUsers,
 };
 
 export default userService;

@@ -127,13 +127,13 @@ const SignInForm = () => {
               className="radio"
             />
           </label>
-          <p>Selected Gender: {gender}</p>
+          {/* <p>Selected Gender: {gender}</p> */}
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput3" className="form-label">
             Birth Date
           </label>
-          <textarea
+          <input
             type="date"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
@@ -192,14 +192,14 @@ const SignInForm = () => {
             onChange={(e) => setMaritalStatus(e.target.value)}
             className="radio"
           />
-          <p>Selected Marital Status: {maritalStatus}</p>
+          {/* <p>Selected Marital Status: {maritalStatus}</p> */}
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput3" className="form-label">
             Password
           </label>
           <input
-            type={password}
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="form-control"
