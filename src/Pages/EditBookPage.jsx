@@ -12,7 +12,8 @@ function EditBookPage({ book }) {
   const [isbnNumber, setIsbnNumber] = useState("");
   const [explanation, setExplanation] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleEdit = (event) => {
+    console.log(book.id);
     event.preventDefault();
     const editedBook = {
       title: title,
@@ -28,7 +29,7 @@ function EditBookPage({ book }) {
       isbnNumber !== "" &&
       explanation !== ""
     ) {
-      handleEdit(book, editedBook);
+      editBook(book.id, editedBook);
       setTitle("");
       setAuthor("");
       setCategory("");
@@ -49,16 +50,7 @@ function EditBookPage({ book }) {
     setShowModal(false);
   };
 
-  const handleEdit = async (id) => {
-    await fetch("http://localhost:3000/books/" + id, {
-      method: "PUT",
-      headers: { "Content-Type": "Application/json" },
-      body: JSON.stringify(id),
-    });
 
-    await editBook();
-    console.log("Book updated: ", book);
-  };
 
   return (
     <div className="container mt-5">
@@ -72,7 +64,7 @@ function EditBookPage({ book }) {
         <Modal.Body>
           <div className="col-lg-12">
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleEdit}
               className="border border-1 p-3 rounded mt-5"
             >
               <div className="mb-3">
@@ -130,7 +122,7 @@ function EditBookPage({ book }) {
                 <input
                   type="text"
                   defaultValue={book.isbnNumber}
-                  onChange={(e) => setIsbnNumber(e.target.value)}
+                  onChange={(isbnNumber) => setIsbnNumber(isbnNumber.target.value)}
                   className="form-control"
                   id="exampleFormControlInput3"
                 />
@@ -158,9 +150,9 @@ function EditBookPage({ book }) {
                   data-testid="add-button"
                   type="submit"
                   variant="primary"
-                  onClick={handleSubmit}
+                  // onClick={handleEdit}
                 >
-                  Save Book
+                  Update Book
                 </Button>
               </Modal.Footer>
             </form>
@@ -172,3 +164,115 @@ function EditBookPage({ book }) {
 }
 
 export { EditBookPage };
+
+// import React, { useState } from 'react';
+
+// const EditForm = ({ book, title, author, category, isbnNumber, explanation, onSave }) => {
+//   const { editBook } = useContext(BookContext);
+//   const [editedTitle, setEditedTitle] = useState(title);
+//   const [editedAuthor, setEditedAuthor] = useState(author);
+//   const [editedCategory, setEditedCategory] = useState(category);
+//   const [editedisbnNumber, setEditedIsbnNumber] = useState(isbnNumber);
+//   const [editedexplanation, setEditedExplanation] = useState(explanation);
+
+
+//   const handleSave = () => {
+//     onSave(editedTitle, editedAuthor, editedCategory, editedisbnNumber, editedexplanation);
+//   };
+
+//   return (
+//     <div>
+//       <label>
+//         Title:
+//         <input
+//           type="text"
+//           value={editedTitle}
+//           onChange={(e) => setEditedTitle(e.target.value)}
+//         />
+//       </label>
+//       <label>
+//         Author:
+//         <input
+//           type="text"
+//           value={editedAuthor}
+//           onChange={(e) => setEditedAuthor(e.target.value)}
+//         />
+//       </label>
+//       <label>
+//         Category:
+//         <input
+//           type="text"
+//           value={editedCategory}
+//           onChange={(e) => setEditedCategory(e.target.value)}
+//         />
+//       </label>
+//       <label>
+//         ISBN Number:
+//         <input
+//           type="text"
+//           value={editedisbnNumber}
+//           onChange={(e) => setEditedIsbnNumber(e.target.value)}
+//         />
+//       </label>
+//       <label>
+//         Explanation:
+//         <input
+//           type="text"
+//           value={editedexplanation}
+//           onChange={(e) => setEditedExplanation(e.target.value)}
+//         />
+//       </label>
+//       <button onClick={handleSave}>Save</button>
+//     </div>
+//   );
+// };
+
+// const EditBookPage = () => {
+//   const [title, setTitle] = useState(title);
+//   const [author, setAuthor] = useState(author);
+//   const [category, setCategory] = useState(category);
+//   const [isbnNumber, setIsbnNumber] = useState(isbnNumber);
+//   const [explanation, setExplanation] = useState(explanation);
+
+//   const [isEditing, setIsEditing] = useState(false);
+
+//   const handleEdit = () => {
+//     setIsEditing(true);
+//   };
+
+//   const handleSave = (editedTitle, editedAuthor, editedCategory, editedisbnNumber, editedexplanation) => {
+//     setTitle(editedTitle);
+//     setAuthor(editedAuthor);
+//     setCategory(editedCategory);
+//     setIsbnNumber(editedisbnNumber);
+//     setExplanation(editedexplanation);
+//     setIsEditing(false);
+    
+//   };
+
+//   return (
+//     <div>
+//       {isEditing ? (
+//         <EditForm
+//           title={title}
+//           author={author}
+//           category={category}
+//           isbnNumber={isbnNumber}
+//           explanation={explanation}
+//           onSave={handleSave}
+//         />
+//       ) : (
+//         <div>
+//           <h1>{title}</h1>
+//           <p>Author: {author}</p>
+//           <p>Category: {category}</p>
+//           <p>isbnNumber: {isbnNumber}</p>
+//           <p>Explanation: {explanation}</p>
+//           <button onClick={handleEdit}>Edit</button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export { EditBookPage };

@@ -37,7 +37,38 @@ const BookContextProvider = (props) => {
 
     await getBookList();
   };
+
+
   
+  const editBook = async (pId, pEditedBook) => {
+
+    const editedBook = {
+      title: pEditedBook.title,
+      author: pEditedBook.author,
+      category: pEditedBook.category,
+      isbnNumber: pEditedBook.isbnNumber,
+      explanation: pEditedBook.explanation,
+    }
+
+    await fetch ("http://localhost:9000/books/" + pId,{
+      method: "PUT",
+      headers: { "Content-Type": "Application/json" },
+      body: JSON.stringify(editedBook),
+    });
+    await getBookList();
+
+  };
+
+  // const handleEdit = async (id) => {
+  //   await fetch("http://localhost:3000/books/" + id, {
+  //     method: "PUT",
+  //     headers: { "Content-Type": "Application/json" },
+  //     body: JSON.stringify(id),
+  //   });
+
+  //   await editBook();
+  //   console.log("Book updated: ", book);
+  // };
 
   const deleteBook = async (pId) => {
     await fetch("http://localhost:9000/books/" + pId, {
@@ -48,7 +79,7 @@ const BookContextProvider = (props) => {
   }
 
   return (
-    <BookContext.Provider value={{ addBook, bookList, deleteBook }}>
+    <BookContext.Provider value={{ addBook, bookList, deleteBook, editBook }}>
       {props.children}
     </BookContext.Provider>
   );

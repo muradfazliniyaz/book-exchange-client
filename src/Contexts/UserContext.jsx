@@ -54,9 +54,17 @@ const UserContextProvider = (props) => {
     await getUserList();
   };
 
+  const deleteUser = async (pId) => {
+    await fetch("http://localhost:9000/users/" + pId, {
+      method:"DELETE",
+    } )
+    await getUserList();
+
+  }
+
   return (
     <UserContext.Provider
-      value={{ addUser, userList, currentUser, getUserByEmail }}
+      value={{ addUser, userList, currentUser, getUserByEmail, deleteUser }}
     >
       {props.children}
     </UserContext.Provider>

@@ -68,21 +68,18 @@ function NavBar() {
               {isAuthenticated && (
                 <>
                   <ProtectedLink
-                    className="nav-button"
                     name="USER PAGE"
                     link="/userpage"
                     user={currentUser}
                     roles={["user", "admin"]}
                   />
                   <ProtectedLink
-                    className="nav-button"
                     name="USER MANAGEMENT"
                     link="/usermanagementpage"
                     user={currentUser}
                     roles={["admin"]}
                   />
                   <ProtectedLink
-                    className="nav-button"
                     name="BOOK MANAGEMENT"
                     link="/bookmanagementpage"
                     user={currentUser}

@@ -7,7 +7,7 @@ function ProtectedLink({ name, link, roles, user }) {
   return (
     <>
       {isAuthorized && (
-        <Nav.Link as={NavLink} to={link}>
+        <Nav.Link className="nav-button" as={NavLink} to={link}>
           {" "}
           {name}
         </Nav.Link>
