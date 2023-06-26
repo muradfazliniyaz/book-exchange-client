@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import bookService from "../Services/bookService";
 import { BookContext } from "../Contexts/BookContext";
 import { useContext } from "react";
-import { AddBookPage } from "../Pages/AddBookPage";
+import { AddBookPage } from "../Components/AddBookPage";
 import { Button } from "reactstrap";
 import { EditBookPage } from "../Pages/EditBookPage";
 
@@ -64,7 +64,7 @@ function BookManagement() {
                       onClick={() => handleDelete(book.id)}
                       variant="danger"
                     >
-                      Delete
+                      Delete Book
                     </Button>
                   </div>
                 </td>

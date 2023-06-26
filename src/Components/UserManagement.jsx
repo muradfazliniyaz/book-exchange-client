@@ -17,7 +17,7 @@ function UserManagement() {
 
   const getAllUsers = async () => {
     try {
-      const users = await userService.getusers();
+      const users = await userService.getUsers();
       if (users) {
         setUsers(users);
       }
@@ -60,13 +60,13 @@ function UserManagement() {
                 <td>{user.role}</td>
                 <td>
                   <div className="book-management-button">
-                    <EditUserPage />
+                    <EditUserPage user={user} />
                     <Button
                       className="delete-button"
                       onClick={() => handleDelete(user.id)}
                       variant="danger"
                     >
-                      Delete
+                      Delete User
                     </Button>
                   </div>
                 </td>

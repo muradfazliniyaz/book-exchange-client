@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+
 export const UserContext = createContext();
 
 const UserContextProvider = (props) => {
@@ -10,7 +11,7 @@ const UserContextProvider = (props) => {
       const response = await fetch("http://localhost:9000/users");
       const data = await response.json();
       console.log(data);
-      setUserList(data); 
+      setUserList(data);
     } catch (error) {
       console.log(error);
     }
@@ -54,17 +55,43 @@ const UserContextProvider = (props) => {
     await getUserList();
   };
 
+  const editUser = async (pId, pEditedUser) => {
+    const editedUser = {
+      name: pEditedUser.name,
+      surname: pEditedUser.surname,
+      email: pEditedUser.email,
+      gender: pEditedUser.gender,
+      birthDate: pEditedUser.birthDate,
+      maritalStatus: pEditedUser.maritalStatus,
+      password: pEditedUser.password,
+      role: pEditedUser.role,
+    };
+
+    await fetch("http://localhost:9000/users/" + pId, {
+      method: "PUT",
+      headers: { "Content-Type": "Application/json" },
+      body: JSON.stringify(editedUser),
+    });
+    await getUserList();
+  };
+
   const deleteUser = async (pId) => {
     await fetch("http://localhost:9000/users/" + pId, {
-      method:"DELETE",
-    } )
+      method: "DELETE",
+    });
     await getUserList();
-
-  }
+  };
 
   return (
     <UserContext.Provider
-      value={{ addUser, userList, currentUser, getUserByEmail, deleteUser }}
+      value={{
+        addUser,
+        userList,
+        currentUser,
+        getUserByEmail,
+        deleteUser,
+        editUser,
+      }}
     >
       {props.children}
     </UserContext.Provider>

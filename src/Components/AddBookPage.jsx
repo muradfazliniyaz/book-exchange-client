@@ -144,24 +144,6 @@ function AddBookPage() {
                   placeholder="Enter ISBN Number"
                 />
               </div>
-{/*               
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleFormControlInput3"
-                  className="form-label"
-                >
-                  User ID
-                </label>
-                <input
-                  type="number"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                  className="form-control"
-                  id="exampleFormControlInput3"
-                  placeholder="Enter User ID"
-                />
-              </div>
-              */}
               <div className="mb-3">
                 <label
                   htmlFor="exampleFormControlInput3"
