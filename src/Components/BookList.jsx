@@ -1,5 +1,7 @@
 import { BookContext } from "../Contexts/BookContext";
 import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import RequestButton from "./RequestButton";
 import {
   Card,
   CardImg,
@@ -9,9 +11,11 @@ import {
   CardText,
   Button,
 } from "reactstrap";
+import { RequestPopOverPage } from "./RequestPopOverPage";
 
 const BookList = () => {
   const { bookList } = useContext(BookContext);
+  const { isAuthenticated, user } = useAuth0();
 
   const showAllBook = () => {
     const template = bookList.map((book, index) => {
@@ -32,7 +36,9 @@ const BookList = () => {
               Category: {book?.category}
             </CardSubtitle>
             {/* <CardText>{book?.explanation}</CardText> */}
-            <Button className="request-button">Request</Button>
+            <div>
+              {isAuthenticated ? <RequestButton /> : <RequestPopOverPage />}
+            </div>
           </CardBody>
         </Card>
       );

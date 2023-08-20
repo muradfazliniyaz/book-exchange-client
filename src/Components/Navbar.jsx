@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Image } from "react-bootstrap";
 import logo from "../images/book-exchange-logo.jpeg";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
@@ -9,21 +9,31 @@ import { ProtectedLink } from "./ProtectedLink";
 import { useContext } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { NavLink } from "react-router-dom";
+import SearchBar from "./searchBar";
 
 function NavBar() {
   const { isAuthenticated, user } = useAuth0();
 
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const toggle = () => setIsOpen(!isOpen);
-
   const { currentUser, getUserByEmail } = useContext(UserContext);
+  const [userName, setUserName] = useState("");
+  const [userPicture, setUserPicture] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
       getUserByEmail(user?.email);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setUserName(user?.name || "");
+      setUserPicture(user?.picture || "");
+    } else {
+      setUserName("");
+      setUserPicture("");
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <>
@@ -31,20 +41,21 @@ function NavBar() {
         <a href="/">
           <img src={logo} alt={"logo"} className="nav-img" />
         </a>
-        <div>
-          <label htmlFor="input-search"></label>
-          <input
-            type="search"
-            name="search"
-            id="search"
-            className="search-field"
-            placeholder="Title, Author, Keyword, ISBN, User"
-          />
-          <button type="submit" className="search-button">
-            Search
-          </button>
-        </div>
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        <SearchBar />
+        {isAuthenticated ? (
+          <div className="user-info">
+            <Image
+              src={userPicture}
+              alt={userName}
+              roundedCircle
+              className="user-avatar"
+            />
+            <span className="user-name">Hello, {userName}</span>
+            <LogoutButton />
+          </div>
+        ) : (
+          <LoginButton />
+        )}
       </div>
       <Navbar className="navbar-container">
         <Container>

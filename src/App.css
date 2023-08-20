@@ -12,6 +12,7 @@
 }
 
 .search-field {
+  margin-left: -200px;
   width: 550px;
   border-radius: 5px 0px 0px 5px;
   box-sizing: border-box;
@@ -26,6 +27,29 @@
 
 .nav-button {
   margin-right: 15px;
+  text-align: center;
+  background-color: #668C03;
+  color: #FFFFFF !important;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.close-button {
+  width: 60px;
+  height: 29px !important;
+  background-color: #668C03 !important;
+  padding-top: 1px !important;
+}
+
+.notice {
+  color: #668C03;
+}
+
+.join-button {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
   text-align: center;
   background-color: #668C03;
   color: #FFFFFF !important;
@@ -134,3 +158,65 @@
   width: 150px !important;
 }
 
+.request-pop-over-h2 {
+  color: #668C03;
+}
+
+.slideshow-container {
+  max-width: 55%;
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.slides {
+  display: flex;
+}
+
+.slide {
+  flex: 0 0 100%;
+  display: none;
+  position: relative;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  text-align: center;
+  bottom: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+}
+
+.navbar-div {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.user-name {
+  margin-right: 10px;
+  font-weight: bold;
+}

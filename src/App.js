@@ -6,10 +6,11 @@ import { Books } from "./Pages/Books";
 import { Contact } from "./Pages/Contact";
 import { SignIn } from "./Components/SignIn";
 import { UserPage } from "./Pages/UserPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
 import { UserManagementPage } from "./Pages/UserManagementPage";
 import { BookManagementPage } from "./Pages/BookManagementPage";
+import SearchResults from "./Components/SearchResults";
 
 const router = createBrowserRouter([
   {
@@ -68,9 +69,19 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/userpage" element={<ProtectedRoute><UserPage /></ProtectedRoute>} />
+        <Route path="/usermanagementpage" element={<ProtectedRoute><UserManagementPage /></ProtectedRoute>} />
+        <Route path="/bookmanagementpage" element={<ProtectedRoute><BookManagementPage /></ProtectedRoute>} />
+      </Routes>
+    </Router>
   );
 }
 
