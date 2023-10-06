@@ -1,3 +1,44 @@
+// import React, { useState, useContext } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { BookContext } from "../Contexts/BookContext";
+
+// const SearchBar = () => {
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const { bookList } = useContext(BookContext);
+//   const navigate = useNavigate();
+
+//   const handleSearch = () => {
+//     const query = searchQuery.toLowerCase();
+
+//     // Kitap listesinde arama yap
+//     const results = bookList.filter(
+//       (item) =>
+//         item.title.toLowerCase().includes(query) ||
+//         item.author.toLowerCase().includes(query) ||
+//         item.category.toLowerCase().includes(query)
+
+//     );
+
+//     // Arama sonuçlarını farklı bir sayfada görüntülemek için yönlendirme yap
+//     navigate("/search-results", { state: { results } });
+//   };
+
+//   return (
+//     <div>
+//       <input
+//       className="search-field"
+//         type="text"
+//         value={searchQuery}
+//         onChange={(e) => setSearchQuery(e.target.value)}
+//         placeholder="Title, Author, Category"
+//       />
+//       <button className="search-button" onClick={handleSearch}>Search</button>
+//     </div>
+//   );
+// };
+
+// export default SearchBar;
+
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BookContext } from "../Contexts/BookContext";
@@ -8,6 +49,16 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    performSearch();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      performSearch();
+    }
+  };
+
+  const performSearch = () => {
     const query = searchQuery.toLowerCase();
 
     // Kitap listesinde arama yap
@@ -16,7 +67,6 @@ const SearchBar = () => {
         item.title.toLowerCase().includes(query) ||
         item.author.toLowerCase().includes(query) ||
         item.category.toLowerCase().includes(query)
-
     );
 
     // Arama sonuçlarını farklı bir sayfada görüntülemek için yönlendirme yap
@@ -26,18 +76,20 @@ const SearchBar = () => {
   return (
     <div>
       <input
-      className="search-field"
+        className="search-field"
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        onKeyPress={handleKeyPress} // Enter tuşu dinlemek için
         placeholder="Title, Author, Category"
       />
-      <button className="search-button" onClick={handleSearch}>Search</button>
+      <button className="search-button" onClick={handleSearch}>
+        Search
+      </button>
     </div>
   );
 };
 
 export default SearchBar;
-
 
 

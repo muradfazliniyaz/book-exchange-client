@@ -13,7 +13,6 @@ import SearchBar from "./searchBar";
 
 function NavBar() {
   const { isAuthenticated, user } = useAuth0();
-
   const { currentUser, getUserByEmail } = useContext(UserContext);
   const [userName, setUserName] = useState("");
   const [userPicture, setUserPicture] = useState("");

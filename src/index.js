@@ -7,6 +7,8 @@ import BookContextProvider from "./Contexts/BookContext";
 import UserContextProvider from "./Contexts/UserContext";
 import { Auth0Provider } from "@auth0/auth0-react";
 import UserBookContextProvider from "./Contexts/UserBookContext";
+import RequestedBookContextProvider from "./Contexts/RequestedBookContext";
+import TheBooksIRequestedContextProvider from "./Contexts/TheBooksIRequestedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,7 +21,11 @@ root.render(
       <UserContextProvider>
         <BookContextProvider>
           <UserBookContextProvider>
-            <App />
+            <RequestedBookContextProvider>
+              <TheBooksIRequestedContextProvider>
+                <App />
+              </TheBooksIRequestedContextProvider>
+            </RequestedBookContextProvider>
           </UserBookContextProvider>
         </BookContextProvider>
       </UserContextProvider>

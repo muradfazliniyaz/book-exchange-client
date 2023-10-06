@@ -20,7 +20,7 @@ const BookList = () => {
   const showAllBook = () => {
     const template = bookList.map((book, index) => {
       return (
-        <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
+        <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3 mt-5">
           <CardImg
             alt="Card image cap"
             src="https://www.kitapvadisi.com.tr/beyaz-dis-jlondon-tomurcuk-yay-dunya-klasikleri-zambak-hikaye-yayinlari-kolektif-456124-25-B.jpg"
@@ -37,7 +37,7 @@ const BookList = () => {
             </CardSubtitle>
             {/* <CardText>{book?.explanation}</CardText> */}
             <div>
-              {isAuthenticated ? <RequestButton /> : <RequestPopOverPage />}
+              {isAuthenticated ? <RequestButton bookId = {book?.id}/> : <RequestPopOverPage />}
             </div>
           </CardBody>
         </Card>

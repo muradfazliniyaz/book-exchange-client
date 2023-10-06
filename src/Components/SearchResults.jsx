@@ -11,6 +11,8 @@
 //   CardBody,
 //   CardTitle,
 //   CardSubtitle,
+//   Row, // Import Row from reactstrap
+//   Col, // Import Col from reactstrap
 // } from "reactstrap";
 
 // const SearchResults = () => {
@@ -21,35 +23,47 @@
 //   return (
 //     <>
 //       <NavBar />
-//       {results.map((result) => (
-//         <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
-//           <CardImg
-//             alt="Card image cap"
-//             src="https://www.kitapvadisi.com.tr/beyaz-dis-jlondon-tomurcuk-yay-dunya-klasikleri-zambak-hikaye-yayinlari-kolektif-456124-25-B.jpg"
-//             top
-//             width="100%"
-//           />
-//           <CardBody>
-//             <CardTitle tag="h5">{result?.title}</CardTitle>
-//             <CardSubtitle className="mb-2 text-muted" tag="h6">
-//               Author: {result?.author}
-//             </CardSubtitle>
-//             <CardSubtitle className="mb-2 text-muted" tag="h6">
-//               Category: {result?.category}
-//             </CardSubtitle>
-//             <div>
-//               {isAuthenticated ? <RequestButton /> : <RequestPopOverPage />}
-//             </div>
-//           </CardBody>
-//         </Card>
-//       ))}
+//       <div className="container">
+//         <div className="row">
+//           <Row>
+//             {" "}
+//             {/* Start a new row */}
+//             {results.map((result) => (
+//               <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
+//                 <CardImg
+//                   alt="Card image cap"
+//                   src="https://www.kitapvadisi.com.tr/beyaz-dis-jlondon-tomurcuk-yay-dunya-klasikleri-zambak-hikaye-yayinlari-kolektif-456124-25-B.jpg"
+//                   top
+//                   width="100%"
+//                 />
+//                 <CardBody>
+//                   <CardTitle tag="h5">{result?.title}</CardTitle>
+//                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+//                     Author: {result?.author}
+//                   </CardSubtitle>
+//                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+//                     Category: {result?.category}
+//                   </CardSubtitle>
+//                   <div>
+//                     {isAuthenticated ? (
+//                       <RequestButton />
+//                     ) : (
+//                       <RequestPopOverPage />
+//                     )}
+//                   </div>
+//                 </CardBody>
+//               </Card>
+//             ))}
+//           </Row>{" "}
+//           {/* End the row */}
+//         </div>
+//       </div>
 //       <Footer />
 //     </>
 //   );
 // };
 
 // export default SearchResults;
-
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { NavBar } from "./Navbar";
@@ -63,8 +77,8 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Row, // Import Row from reactstrap
-  Col, // Import Col from reactstrap
+  Row,
+  Col,
 } from "reactstrap";
 
 const SearchResults = () => {
@@ -75,36 +89,47 @@ const SearchResults = () => {
   return (
     <>
       <NavBar />
-      <Row> {/* Start a new row */}
-        {results.map((result) => (
-          <Col key={result.id} lg="3" md="4" sm="6" xs="12" className="mb-3 mt-3" > {/* Use Col to create columns */}
-            <Card>
-              <CardImg
-                alt="Card image cap"
-                src="https://www.kitapvadisi.com.tr/beyaz-dis-jlondon-tomurcuk-yay-dunya-klasikleri-zambak-hikaye-yayinlari-kolektif-456124-25-B.jpg"
-                top
-                width="100%"
-              />
-              <CardBody>
-                <CardTitle tag="h5">{result?.title}</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Author: {result?.author}
-                </CardSubtitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Category: {result?.category}
-                </CardSubtitle>
-                <div>
-                  {isAuthenticated ? <RequestButton /> : <RequestPopOverPage />}
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-        ))}
-      </Row> {/* End the row */}
+      <div className="container">
+        <div className="row">
+          {results.length === 0 ? (
+            <div className="col-12 text-center mt-5">
+              <h2 className="result-note">No results matching your search criteria were found.</h2>
+            </div>
+          ) : (
+            <Row>
+              {results.map((result) => (
+                <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://www.kitapvadisi.com.tr/beyaz-dis-jlondon-tomurcuk-yay-dunya-klasikleri-zambak-hikaye-yayinlari-kolektif-456124-25-B.jpg"
+                    top
+                    width="100%"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">{result?.title}</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      Author: {result?.author}
+                    </CardSubtitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      Category: {result?.category}
+                    </CardSubtitle>
+                    <div>
+                      {isAuthenticated ? (
+                        <RequestButton />
+                      ) : (
+                        <RequestPopOverPage />
+                      )}
+                    </div>
+                  </CardBody>
+                </Card>
+              ))}
+            </Row>
+          )}
+        </div>
+      </div>
       <Footer />
     </>
   );
 };
 
 export default SearchResults;
-

@@ -4,6 +4,8 @@ export const BookContext = createContext();
 
 const BookContextProvider = (props) => {
   const [bookList, setBookList] = useState([]);
+  const [setRequestedBook] = useState([]);
+
 
   const getBookList = async () => {
     try {
@@ -15,9 +17,33 @@ const BookContextProvider = (props) => {
       console.log(error);
     }
   };
+  const getBookById = async (id) => {
+    try {
+      const response = await fetch("http://localhost:9000/books/" + id);
+      const data = await response.json();
+      console.log(data);
+      setRequestedBook(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const assignBook = async (id, userId) => {
+    try {
+      await fetch("http://localhost:9000/books/" + id + "/" + userId, {
+        method: "PUT",
+        headers: { "Content-Type": "Application/json" },
+      });
+      console.log("user" + userId)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ 
   useEffect(() => {
     getBookList();
+    getBookById();
   }, []);
 
   const addBook = async (pBook) => {
@@ -74,7 +100,7 @@ const BookContextProvider = (props) => {
   };
 
   return (
-    <BookContext.Provider value={{ addBook, bookList, deleteBook, editBook }}>
+    <BookContext.Provider value={{ addBook, bookList, deleteBook, editBook, getBookById, assignBook }}>
       {props.children}
     </BookContext.Provider>
   );

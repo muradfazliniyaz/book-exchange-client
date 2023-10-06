@@ -220,3 +220,35 @@
   margin-right: 10px;
   font-weight: bold;
 }
+.recently-added {
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #668C03;
+}
+.home-book {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+.home-book-count {
+  font-size: 50px;
+  font-weight: bold;
+  color: #A00104;
+}
+.home-book-avaible {
+  font-size: 50px;
+  font-weight: bold;
+  color: #668C03;
+  margin-left: 15px;
+}
+.last-added {
+  text-align: center;
+}
+.result-note {
+  height: 250px;
+  text-align: center;
+  margin-top: 180px;
+}

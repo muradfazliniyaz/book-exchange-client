@@ -1,14 +1,23 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { BookContext } from "../Contexts/BookContext";
+import { useContext } from "react";
+import { UserContext } from "../Contexts/UserContext";
 
-const RequestTwoButton = () => {
-  const { logout } = useAuth0();
+const RequestButton = ({bookId}) => {
+  const { assignBook } = useContext(BookContext);
+  const { currentUser } = useContext(UserContext);
+
+
+  const requestBook = () => {
+    console.log(bookId)
+    assignBook (bookId, currentUser.id)
+  }
 
   return (
     <button
       className="nav-button"
-      onClick={() =>
-        logout({ logoutParams: { returnTo: window.location.origin } })
+      onClick={
+        requestBook
       }
     >
       Request
@@ -16,4 +25,4 @@ const RequestTwoButton = () => {
   );
 };
 
-export default RequestTwoButton;
+export default RequestButton;

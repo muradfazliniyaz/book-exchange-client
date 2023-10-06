@@ -1,4 +1,4 @@
-import { BookContext } from "../Contexts/BookContext";
+import { RequestedBookContext } from "../Contexts/RequestedBookContext";
 import { useContext } from "react";
 import {
   Card,
@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 
 const RequestedBooks = () => {
-  const { bookList } = useContext(BookContext);
+  const { requestedBookList } = useContext(RequestedBookContext);
 
   const handleDelete = (id) => {
     // deleteBook(id);
@@ -19,7 +19,7 @@ const RequestedBooks = () => {
   };
 
   const showAllBook = () => {
-    const template = bookList.map((book, index) => {
+    const template = requestedBookList.map((book, index) => {
       return (
         <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
           <CardImg
