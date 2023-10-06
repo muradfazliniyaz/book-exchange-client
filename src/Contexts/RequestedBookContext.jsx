@@ -1,13 +1,15 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { UserContext } from "../Contexts/UserContext";
 
 export const RequestedBookContext = createContext();
 
 const RequestedBookContextProvider = (props) => {
   const [requestedBookList, setRequestedBookList] = useState([]);
-
+  const { currentUser } = useContext(UserContext);
   const getBookList = async () => {
     try {
-      const response = await fetch("http://localhost:9000/requestedBooks");
+      console.log(currentUser.id)
+      const response = await fetch("http://localhost:9000/requestedBooks/" + currentUser.id);
       const data = await response.json();
       console.log(data);
       setRequestedBookList(data);
