@@ -17,7 +17,7 @@ const RequestedBooks = () => {
     console.log("The book was deleted. ID: ", id);
   };
 
-  const showAllBook = () => {
+  const showRequestedBooks = () => {
     const template = requestedBookList.map((book, index) => {
       return (
         <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
@@ -53,7 +53,7 @@ const RequestedBooks = () => {
 
   return (
     <div className="container">
-      <div className="row">{showAllBook()}</div>
+      <div className="row">{showRequestedBooks()}</div>
     </div>
   );
 };

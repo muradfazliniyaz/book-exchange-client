@@ -32,16 +32,8 @@ const RequestedBookContextProvider = (props) => {
     getBookList();
   }, []);
 
-
-  const deleteBook = async (pId) => {
-    await fetch("http://localhost:9000/books/" + pId, {
-      method: "DELETE",
-    });
-    await getBookList();
-  };
-
   return (
-    <RequestedBookContext.Provider value={{ requestedBookList, deleteBook }}>
+    <RequestedBookContext.Provider value={{ requestedBookList }}>
       {props.children}
     </RequestedBookContext.Provider>
   );
