@@ -11,15 +11,15 @@ import {
 } from "reactstrap";
 
 const TheBooksIRequested = () => {
-  const { bookList } = useContext(TheBooksIRequestedContext);
+  const { theBooksIRequestedList } = useContext(TheBooksIRequestedContext);
 
   const handleDelete = (id) => {
     // deleteBook(id);
     console.log("The book was deleted. ID: ", id);
   };
 
-  const showBooksIRequested = () => {
-    const template = bookList.map((book, index) => {
+  const showAllIRequestedBook = () => {
+    const template = theBooksIRequestedList.map((book, index) => {
       return (
         <Card className="col-lg-2 col-4 col-sm-12 col-md-6 m-3">
           <CardImg
@@ -54,7 +54,7 @@ const TheBooksIRequested = () => {
 
   return (
     <div className="container">
-      <div className="row">{showBooksIRequested()}</div>
+      <div className="row">{showAllIRequestedBook()}</div>
     </div>
   );
 };

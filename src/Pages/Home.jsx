@@ -15,10 +15,14 @@ const Home = () => {
       <NavBar />
       <Slideshow />
       <div className="home-book">
-        <div className="home-book-count">7</div>
+        <div className="home-book-count">3</div>
+        <div className="home-book-avaible">Users Avaible</div>
+      </div>
+      <div className="home-book">
+        <div className="home-book-count">12</div>
         <div className="home-book-avaible">Books Avaible</div>
       </div>
-      <LastAddedList/>
+      <LastAddedList />
       <Footer />
     </>
   );

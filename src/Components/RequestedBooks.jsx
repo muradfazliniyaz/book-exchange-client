@@ -12,7 +12,6 @@ import {
 
 const RequestedBooks = () => {
   const { requestedBookList } = useContext(RequestedBookContext);
-
   const handleDelete = (id) => {
     // deleteBook(id);
     console.log("The book was deleted. ID: ", id);

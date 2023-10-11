@@ -4,7 +4,7 @@ export const BookContext = createContext();
 
 const BookContextProvider = (props) => {
   const [bookList, setBookList] = useState([]);
-  const [setRequestedBook] = useState([]);
+  // const [setRequestedBook] = useState([]);
 
 
   const getBookList = async () => {
@@ -22,7 +22,7 @@ const BookContextProvider = (props) => {
       const response = await fetch("http://localhost:9000/books/" + id);
       const data = await response.json();
       console.log(data);
-      setRequestedBook(data);
+      // setRequestedBook(data);
     } catch (error) {
       console.log(error);
     }
